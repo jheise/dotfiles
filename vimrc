@@ -150,14 +150,51 @@ autocmd BufWritePre *.gz set bin
 autocmd BufWritePost *.gz undo|set nobin
 autocmd FileReadPost *.gz set bin|'[,']!gunzip
 autocmd FileReadPost set nobin
-autocmd BufNewFile,BufRead *.pp set filetype=puppet
+" autocmd BufNewFile,BufRead *.pp set filetype=puppet
 
 "----- instructions for VIM on processing this file
 " vim:ts=3
-source ~/.vim/plugin/puppet.vim
-source ~/.vim/plugin/snipMate.vim
+"source ~/.vim/plugin/puppet.vim
+"source ~/.vim/plugin/snipMate.vim
 
 "turn on snipMate
-:filetype plugin on
+":filetype plugin on
 
-call pathogen#infect()
+"call pathogen#infect()
+" setup neobundle
+"if &compatible
+"    set nocompatible
+"endif
+
+"set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+"call neobundle#begin(expand('~/.vim/bundle/'))
+"NeoBundleFetch 'Shougo/neobundle.vim'
+"NeoBundle 'fatih/vim-go'
+"NeoBundle 'vim-syntastic/syntastic'
+"NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'tpope/commentary'
+"call neobundle#end()
+"filetype plugin indent on
+"NeoBundleCheck
+"let g:neobundle#types#git#default_protocol = 'git'
+
+"---- start vimplug
+call plug#begin('~/.vim/plugged')
+Plug 'fatih/vim-go'
+Plug 'vim-syntastic/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'Valloric/YouCompleteMe'
+" Plug 'powerline/powerline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
+"--- rebind control-c
+map <C-c> gcc <CR>
+vmap <C-c> gc
+
+"--- airline
+let g:airline_theme='deus'
+
